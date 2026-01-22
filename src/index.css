@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  --color-urbansense-background: #09090b;
+  --color-urbansense-surface-0: #18181b;
+  --color-urbansense-surface-1: #27272a;
+  --color-urbansense-surface-2: #3f3f46;
+  
+  --color-urbansense-border-dim: #27272a;
+  --color-urbansense-border-mid: #3f3f46;
+  --color-urbansense-border-light: #52525b;
+  
+  --color-urbansense-primary: #f4f4f5;
+  --color-urbansense-secondary: #a1a1aa;
+  --color-urbansense-tertiary: #71717a;
+  
+  --color-urbansense-accent: #6366f1;
+  --color-urbansense-accent-hover: #4f46e5;
+
+  /* Ombres plus naturelles */
+  --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 0 0 1px rgba(255,255,255,0.05), 0 4px 12px rgba(0,0,0,0.5);
+
+  --font-sans: "Inter", "system-ui", "sans-serif";
+}
+
+@layer base {
+  body {
+    @apply bg-urbansense-background text-urbansense-primary antialiased;
+    /* Suppression du radial-gradient "spotlight" pour un fond uni propre */
+    background-color: theme('colors.urbansense.background');
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-urbansense-accent/70 ring-offset-2 ring-offset-urbansense-background;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-5 py-2.5 rounded-md font-medium flex items-center justify-center gap-2 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-sm;
+  }
+  
+  /* Boutons plus plats, sans lueur */
+  .btn-primary {
+    @apply bg-urbansense-primary text-urbansense-background hover:bg-white active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply bg-urbansense-surface-0 border border-urbansense-border-mid text-urbansense-primary hover:bg-urbansense-surface-1 active:scale-[0.98];
+  }
+  
+  .btn-ghost {
+    @apply bg-transparent text-urbansense-secondary hover:text-white hover:bg-urbansense-surface-0;
+  }
+
+  /* Cartes plus sobres */
+  .card {
+    @apply bg-urbansense-surface-0 border border-urbansense-border-dim rounded-xl shadow-card overflow-hidden;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-md bg-urbansense-surface-0 border border-urbansense-border-dim text-urbansense-primary placeholder-urbansense-tertiary focus:border-urbansense-accent focus:ring-1 focus:ring-urbansense-accent outline-none transition-all duration-200;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #3f3f46;
+    border-radius: 20px;
+  }
+}
